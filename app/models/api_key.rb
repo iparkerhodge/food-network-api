@@ -5,6 +5,9 @@ class ApiKey < ApplicationRecord
   HMAC_SECRET_KEY = Rails.application.credentials.api_key_hmac_secret_key
   belongs_to :user
 
+  scope :deleted, -> { where.not(deleted_at: nil) }
+  scope :active, -> { where(deleted_at: nil) }
+
   before_create :generate_token_hmac_digest
 
   attr_accessor :token
