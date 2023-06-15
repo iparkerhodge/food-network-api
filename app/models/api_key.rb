@@ -3,7 +3,7 @@
 # A Model for API Keys
 class ApiKey < ApplicationRecord
   HMAC_SECRET_KEY = Rails.application.credentials.api_key_hmac_secret_key
-  belongs_to :users
+  belongs_to :user
 
   before_create :generate_token_hmac_digest
 
