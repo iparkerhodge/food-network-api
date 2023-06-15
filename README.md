@@ -1,24 +1,10 @@
-# README
+# Food Network API
+This is a hobby project. It is not affiliated with Food Network, and it should really not be used for anything outside of my own personal learning.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Data Collection
+Data for this project was collected via a Python scraper. For more details on the project visit [this repository](https://github.com/iparkerhodge/food-network-recipes-scraper)
 
-Things you may want to cover:
+#### API Keys
+This project requires an API key. To register for an API key, follow the instructions [here](https://github.com/iparkerhodge/food-network-api-cli)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### This project is a work in progress
