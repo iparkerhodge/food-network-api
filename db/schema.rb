@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_194645) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_150205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_194645) do
     t.index ["token_digest"], name: "index_api_keys_on_token_digest", unique: true
   end
 
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.string "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile"], name: "index_authors_on_profile", unique: true
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "level"
+    t.string "total_time"
+    t.string "active_time"
+    t.string "servings"
+    t.string "directions", default: [], array: true
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "author_id"
+    t.string "ingredients", default: [], array: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -32,4 +54,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_194645) do
   end
 
   add_foreign_key "api_keys", "users"
+  add_foreign_key "recipes", "authors"
 end
