@@ -15,7 +15,7 @@ class ApiKey < ApplicationRecord
   def self.authenticate_by_token!(token)
     digest = OpenSSL::HMAC.hexdigest 'SHA256', HMAC_SECRET_KEY, token
 
-    find_by! token_digest: digest
+    find_by(token_digest: digest, deleted_at: nil)
   end
 
   def self.authenticate_by_token(token)
