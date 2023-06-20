@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
   def create
     if @current_user&.admin
       r = JSON.parse(params['_json']).transform_keys!(&:to_sym)
-      puts r
+      RecipeCreator.call(r)
       render status: :created
     else
       render status: :unauthorized

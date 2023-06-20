@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_182014) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_163847) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,18 +37,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_182014) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories_recipes", id: false, force: :cascade do |t|
-    t.bigint "recipe_id", null: false
-    t.bigint "category_id", null: false
-    t.index ["category_id", "recipe_id"], name: "index_categories_recipes_on_category_id_and_recipe_id"
-    t.index ["recipe_id", "category_id"], name: "index_categories_recipes_on_recipe_id_and_category_id"
-  end
-
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.string "level"
     t.string "total_time"
-    t.string "active_time"
     t.string "servings"
     t.string "directions", default: [], array: true
     t.string "image_url"
@@ -56,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_182014) do
     t.datetime "updated_at", null: false
     t.integer "author_id"
     t.string "ingredients", default: [], array: true
+    t.string "time_descriptions", default: [], array: true
+    t.string "source", null: false
+  end
+
+  create_table "tags", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id", "recipe_id"], name: "index_tags_on_category_id_and_recipe_id"
+    t.index ["recipe_id", "category_id"], name: "index_tags_on_recipe_id_and_category_id"
   end
 
   create_table "users", force: :cascade do |t|
